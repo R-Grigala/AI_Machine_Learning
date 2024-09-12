@@ -1,0 +1,11 @@
+.custom-navbar {
+    padding: 38px 162px;
+    border: 1px solid #DBDBDB;
+    background-color: #FFFFFF;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+}
