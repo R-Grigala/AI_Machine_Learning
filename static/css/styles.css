@@ -9,3 +9,11 @@
     justify-content: space-between;
     background-color: #FFFFFF;
 }
+
+.checkbox-label {
+    font-family: 'FiraGO', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    text-align: left;
+}

@@ -26,15 +26,66 @@
         <div class="container h-100 container-fluid">
             <div class="filter-container d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <div type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div type="button" class="btn dropdown-toggle me-5" data-bs-toggle="dropdown" aria-expanded="false">
                       რეგიონი
                     </div>
-                    <div class="dropdown-menu" style="width: 731px">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                      <li><hr class="dropdown-divider" /></li>
-                      <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    <div class="dropdown-menu" style="width: 731px; border: 1px solid #DBDBDB;">
+                        <form class="px-4 py-3">
+                            <div class="text-start fw-bold mb-3">რეგიონის მიხედვით</div>
+                            <div id="region-container" class="row mb-4">
+                                <!-- Checkboxes will be inserted here by JavaScript -->
+                            </div>
+                      
+                            <!-- Submit button -->
+                            <div class="d-flex justify-content-end align-items-end m-2">
+                                <button type="submit" class="btn btn-custom-color me-2" style="background-color: #F93B1D; color: white;"> არჩევა </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div type="button" class="btn dropdown-toggle me-5" data-bs-toggle="dropdown" aria-expanded="false">
+                        საფასო კატეგორია
+                    </div>
+                    <div class="dropdown-menu" style="width: 382px; border: 1px solid #DBDBDB;">
+                        <form class="px-4 py-3">
+                            <div class="text-start fw-bold mb-3" style="font-size: 16px;">ფასის მიხედვით</div>
+                            <div id="price-container" class="row">
+                                <div class="col">
+                                    <input class="form-control mt-2" id="priceStart" name="priceStart" placeholder="₾ -დან">
+                                </div>
+                                <div class="col mb-3">
+                                    <input class="form-control mt-2" id="priceEnd" name="priceEnd" placeholder="₾ -მდე">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-start fw-bold mb-3" style="font-size: 14px;">მინ.ფასი</div>
+                                <div class="col text-start fw-bold mb-3" style="font-size: 14px;">მაქს.ფასი</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-start price-option" data-price="50000" style="font-size: 14px;">50,000 ₾</div>
+                                <div class="col text-start price-option" data-price="50000" style="font-size: 14px;">50,000 ₾</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-start price-option" data-price="100000" style="font-size: 14px;">100,000 ₾</div>
+                                <div class="col text-start price-option" data-price="100000" style="font-size: 14px;">100,000 ₾</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-start price-option" data-price="150000" style="font-size: 14px;">150,000 ₾</div>
+                                <div class="col text-start price-option" data-price="150000" style="font-size: 14px;">150,000 ₾</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-start price-option" data-price="200000" style="font-size: 14px;">200,000 ₾</div>
+                                <div class="col text-start price-option" data-price="200000" style="font-size: 14px;">200,000 ₾</div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-start price-option" data-price="300000" style="font-size: 14px;">300,000 ₾</div>
+                                <div class="col text-start price-option" data-price="300000" style="font-size: 14px;">300,000 ₾</div>
+                            </div>
+                      
+                            <!-- Submit button -->
+                            <div class="d-flex justify-content-end align-items-end mt-5">
+                                <button type="submit" class="btn btn-custom-color me-2" style="background-color: #F93B1D; color: white;"> არჩევა </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -49,5 +100,6 @@
 
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/static/js/index.js" defer></script>
 </body>
 </html>
