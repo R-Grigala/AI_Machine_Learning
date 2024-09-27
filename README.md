@@ -1,2 +1,2 @@
 # Bootcamp
-Projects For Bootcamp
+Projects For AI and Machine Learning
