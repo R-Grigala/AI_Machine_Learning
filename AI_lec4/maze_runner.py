@@ -33,7 +33,7 @@ def bfs(maze, start, end):
                 queue.append((nx, ny))
                 visited.add((nx, ny))
                 parent_map[(nx, ny)] = (x, y)
-
+        # print(parent_map)
     return False  # No path found
 
 
@@ -93,7 +93,7 @@ for line in maze_lines:
     for char in line:
         row.append(char)  # Add each character to the row list
     maze.append(row)  # Add the completed row to the maze list
-#print(maze)
+# print(maze)
 
 # Solve the maze and print the result
 solve_maze(maze)
