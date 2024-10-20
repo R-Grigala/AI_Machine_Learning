@@ -16,6 +16,16 @@ def Gameboard(board):
         print('\n' + '---------------')
     print('===============')
 
+# Function to display the numbered game board
+def display_numbered_board():
+    print('Available moves:')
+    for i in range(1, 10):
+        print(f'| {i} |', end='')
+        if i % 3 == 0:
+            print()
+            print('---------------')
+    print('===============')
+
 # Function to clear the game board
 def Clearboard(board):
     for x, row in enumerate(board):
@@ -59,44 +69,29 @@ def boardFull(board):
 def setMove(board, x, y, player):
     board[x][y] = player
 
-# Minimax algorithm with Alpha-Beta pruning
-def minimax(board, depth, alpha, beta, player):
-    if gameWon(board) or boardFull(board):
-        return [None, None, getScore(board)]
-    
+# Minimax algorithm without alpha-beta pruning
+def minimax(board, depth, player):
+    if gameWon(board):
+        return getScore(board)
+    elif boardFull(board):
+        return 0
+
     if player == 1:  # Maximizing player (X)
         max_eval = -inf
-        best_move = None
         for [x, y] in blanks(board):
             board[x][y] = 1
-            eval = minimax(board, depth - 1, alpha, beta, -1)[2]
+            eval = minimax(board, depth - 1, -1)
             board[x][y] = 0  # Undo move
-
-            if eval > max_eval:
-                max_eval = eval
-                best_move = [x, y]
-
-            alpha = max(alpha, eval)
-            if beta <= alpha:
-                break  # Alpha-Beta pruning
-        return [*best_move, max_eval]
-
+            max_eval = max(max_eval, eval)
+        return max_eval
     else:  # Minimizing player (O)
         min_eval = inf
-        best_move = None
         for [x, y] in blanks(board):
             board[x][y] = -1
-            eval = minimax(board, depth - 1, alpha, beta, 1)[2]
+            eval = minimax(board, depth - 1, 1)
             board[x][y] = 0  # Undo move
-
-            if eval < min_eval:
-                min_eval = eval
-                best_move = [x, y]
-
-            beta = min(beta, eval)
-            if beta <= alpha:
-                break  # Alpha-Beta pruning
-        return [*best_move, min_eval]
+            min_eval = min(min_eval, eval)
+        return min_eval
 
 # Function to calculate the score of the current board state
 def getScore(board):
@@ -112,7 +107,16 @@ def o_comp(board):
     if len(blanks(board)) == 9:  # Random move for the first turn
         x, y = choice(blanks(board))
     else:
-        x, y, _ = minimax(board, len(blanks(board)), -inf, inf, -1)
+        best_score = inf
+        best_move = None
+        for [x, y] in blanks(board):
+            board[x][y] = -1
+            score = minimax(board, len(blanks(board)) - 1, 1)
+            board[x][y] = 0  # Undo move
+            if score < best_score:
+                best_score = score
+                best_move = [x, y]
+        x, y = best_move
     setMove(board, x, y, -1)
     Gameboard(board)
 
@@ -135,28 +139,15 @@ def playerMove(board):
 
 # Game between player and computer
 def pvc():
-    while True:
-        try:
-            order = int(input('Enter 1 to go first or 2 to go second: '))
-            if order not in [1, 2]:
-                print('Invalid Input! Try again!')
-            else:
-                Gameboard(board)
-                break
-        except(ValueError, KeyError):
-            print('Enter a valid number!')
+    display_numbered_board()  # Display the numbered board at the beginning
+    print("Computer makes the first move.")
+    o_comp(board)  # Let the computer make the first move
 
     while not gameWon(board) and not boardFull(board):
-        if order == 1:
-            playerMove(board)
-            if gameWon(board) or boardFull(board):
-                break
-            o_comp(board)
-        else:
-            o_comp(board)
-            if gameWon(board) or boardFull(board):
-                break
-            playerMove(board)
+        playerMove(board)
+        if gameWon(board) or boardFull(board):
+            break
+        o_comp(board)
 
     printResult(board)
     Clearboard(board)

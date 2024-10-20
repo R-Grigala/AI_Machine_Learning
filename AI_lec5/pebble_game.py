@@ -98,5 +98,5 @@ def simulate_game(pebbles):
         print("Human wins!")
 
 # run game with N pebbles
-simulate_game(100)
+simulate_game(10)
 
